@@ -1,36 +1,47 @@
-Role Name
+docker_post_install
 =========
 
-A brief description of the role goes here.
+`docker_post_install` does some configuration after installing docker.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+`docker` shall be installed before this.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Variables shall be defined:
+
+- `docker_proxy` - boolean, defines if set proxy or not.
+- `docker_http_proxy` - string, defines the proxy address for HTTP. If defined, one `http-proxy.conf` would be created.
+- `docker_https_proxy` - string, defines the proxy address for HTTPS. If defined, one `https-proxy.conf` would be created.
+- `docker_no_proxy` - string, defines the host list needing no proxy, separated by comma. By default, `localhost,127.0.0.1`. 
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+---
+
+- hosts: servers
+  roles:
+    - role: ./docker_post_install
+      docker_proxy: true
+      docker_https_proxy: http://127.0.0.1:8080
+```
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------

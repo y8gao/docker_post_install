@@ -1,2 +1,10 @@
 ---
 # defaults file for docker_post_install
+
+
+# define if docker daemon uses proxy, no by default.
+docker_proxy: false
+docker_http_proxy: ""
+docker_https_proxy: ""
+docker_no_proxy: "localhost,127.0.0.1"
+

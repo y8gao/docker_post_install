@@ -1,2 +1,9 @@
 ---
 # handlers file for docker_post_install
+
+- name: restart docker
+  become: true
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: true

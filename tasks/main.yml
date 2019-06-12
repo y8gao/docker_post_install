@@ -1,2 +1,14 @@
 ---
 # tasks file for docker_post_install
+
+- name: Ensure docker is installed
+  systemd:
+    name: docker
+    state: started
+
+- include_tasks: post_install.yml
+
+- name: ensure starts on system boot
+  systemd:
+    name: docker
+    enabled: true
